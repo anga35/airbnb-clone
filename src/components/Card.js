@@ -1,26 +1,44 @@
-import my_pic from '../images/temp.jpg'
-import star from '../images/star.svg'
-export default function Card(){
+
+
+export default function Card(props){
+    // console.log(props)
+    let status
+    if(props.openSpot===0){
+        status='Sold out'
+    }
+    else if(props.onlineStatus===true){
+        status='Online'
+    }
+
+
+    // console.log(img)
 return(
 
     <div className="card">
 
-        <img className='card-pic' src={my_pic}></img>
-        <br></br>
+        <div className='card-pic-container'>
+        <img className='card-pic' src={`../images/${props.img}`}></img>
+        <div className='status-card'>
+            {status && <p className='status-text'>{status}</p>}
+
+        </div>
+        </div>
+
+        
 
 
             <div className='rating'>
-            <img class='star' src={star}></img>
-            <p className='rating-text'>5.0 </p>
-            <p className='gray-text'>&nbsp;(6) USA</p>
- 
+            <img className='star' src={props.star} />
+            <p className='rating-text'>{props.rating} </p>
+            <p className='gray-text'>&nbsp;({props.reviews})</p>
+            <p className='gray-text'>&nbsp;{props.country}</p>
             
             </div>
-            <p className='rating-text'>Life lessons with Katie Zaferes
+            <p className='rating-text'>{props.card_title}
 </p>
 
 <div className='rating'>
-<p className='price-span'>From $136</p>
+<p className='price-span'>From ${props.price}</p>
 <p className='rating-text'>/ person</p>
 </div>
  
